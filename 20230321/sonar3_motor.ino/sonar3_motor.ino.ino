@@ -106,7 +106,7 @@ void motor_B_control (int direction_b, int motor_speed_b)//모터 B의 방향(di
 }
 
 void loop()
-{ /*
+{ 
   //Serial.print("Duration:");
   //Serial.println(duration);
   Serial.print("Distance1: ");
@@ -115,7 +115,7 @@ void loop()
   Serial.print(sonar2());
   Serial.print("Distance3: ");
   Serial.println(sonar3());
-*/
+
   motor_A_control(HIGH,100);
   motor_B_control(HIGH,100);
   
