@@ -29,9 +29,7 @@ NewPing sonar[SONAR_NUM] = {   // Sensor object array.
   float front_sonar = 0.0;
   float left_sonar = 0.0;
   float right_sonar = 0.0;
- 
 
-///////////////////////////// L298 //////////////////////////////////////
 
 #define ENA 8
 #define IN1 9
@@ -40,13 +38,11 @@ NewPing sonar[SONAR_NUM] = {   // Sensor object array.
 #define IN4 12
 #define ENB 13
 
-//////////////////// Maze Status ///////////////////////////////
 int maze_status = 0;
 
 
 void setup()
 {
-  // put your setup code here, to run once:
    
     pinMode(ENA, OUTPUT);
     pinMode(IN1, OUTPUT);
@@ -59,7 +55,7 @@ void setup()
     Serial.begin(115200); //통신속도를 115200으로 정의함
 }
 
-void motor_A_control(int direction_a, int motor_speed_a) //모터 A의 방향(direction)과 속도(speed)제어
+void motor_A_control(int direction_a, int motor_speed_a) //모터 A의 방향과 속도제어
 {
   if(direction_a == HIGH)
   {
@@ -75,7 +71,7 @@ void motor_A_control(int direction_a, int motor_speed_a) //모터 A의 방향(di
   }
 }
 
-void motor_B_control(int direction_b, int motor_speed_b) //모터 B의 방향(direction)과 속도(speed)제어
+void motor_B_control(int direction_b, int motor_speed_b)
 {
   if(direction_b == HIGH)
   {
@@ -147,7 +143,7 @@ void loop() {
   left_sonar = sonar[Left].ping_cm() * 10;   //좌측 센서 측정
   right_sonar = sonar[Right].ping_cm() * 10; //우측 센서 측정
    
-  if(front_sonar == 0.0)  front_sonar = MAX_DISTANCE; //0.0 출력이 최대값이므로
+  if(front_sonar == 0.0)  front_sonar = MAX_DISTANCE;
   if(left_sonar == 0.0)   left_sonar = MAX_DISTANCE;
   if(right_sonar == 0.0)  right_sonar = MAX_DISTANCE;
 
@@ -157,7 +153,7 @@ void loop() {
 
   check_maze_status();
   if( maze_status == 1)
-  { // 좌우 벽만 있을 때 직전
+  {
     Serial.println("Go Straight");
     wall_collision_avoid(MOTOR_SPEED);
   }
