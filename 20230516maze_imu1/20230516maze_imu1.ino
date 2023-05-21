@@ -165,7 +165,7 @@ void check_maze_status(void)
 void wall_collision_avoid(int base_spped)
 {
   float error = 0.0;
-  float Kp = 0.7; //나중에 조정해야 할 값(얼마나 돌지)
+  float Kp = 0.3; //나중에 조정해야 할 값(얼마나 돌지)
   int pwm_control = 0;
   int right_pwm = 0;
   int left_pwm  = 0;
@@ -275,72 +275,42 @@ void loop()
   
   imu_rotation();
   
-/*
-  if(maze_status == 4)
-  {
-  //정지 한다
-  motor_A_control(HIGH,0);
-  motor_B_control(LOW,0);
-  
-  
-  //180도 회전을 한다
-  Serial.println("Rotate CCW");
-  motor_A_control(HIGH,85); //왼쪽 전진
-  motor_B_control(LOW,90); //오른쪽은 후진
-  delay(1500);
-  
-  //정지 한다
-  motor_A_control(HIGH,0);
-  motor_B_control(LOW,0);
-  
-  
-  //앞으로 간다
-  Serial.println("Go Straight");
-  motor_A_control(HIGH,100);
-  motor_B_control(HIGH,110);
+  /*
+     if(maze_status == 4) // 왼 가 오
+    {
+      Serial.println("Rotate CCW");
+      motor_A_control(HIGH,130); // 오른쪽 전진
+      motor_B_control(LOW,130); // 오른쪽 후진
+      delay(930);
+    }
+    else if( maze_status == 1) // 왼 오
+    {
+      Serial.println("run straight");
+      wall_collision_avoid(70);
+    }
 
-  }
-  
-  if(maze_status == 1)
-  {
-  //앞으로 간다
-  Serial.println("run straight");
-  wall_collision_avoid(100);
-  } 
-  
-  else if(maze_status == 3)
-  {
-  //정지 한다
-  motor_A_control(HIGH,0);
-  motor_B_control(LOW,0);
-  
-  //왼쪽으로 90도 회전 한다
-  Serial.println("Rotate CCW");
-  motor_A_control(LOW,95); 
-  motor_B_control(HIGH,100); 
-  delay(700);
-  //정지 한다 
-  motor_A_control(HIGH,0);
-  motor_B_control(LOW,0);
-   
-  }
-  
-  else if(maze_status == 2)
-  {
-  //정지 한다
-  motor_A_control(HIGH,0);
-  motor_B_control(LOW,0);
-  
-  //오른쪽으로 90도 회전 한다
-  Serial.println("Rotate CCW");
-  motor_A_control(HIGH,90); 
-  motor_B_control(LOW,95); 
-  delay(700);
-  //정지 한다
-  motor_A_control(HIGH,0);
-  motor_B_control(LOW,0);
-  
-  } 
+     else if( maze_status == 2) //왼 가
+    {
+      Serial.println("Rotate CCW");
+      motor_A_control(LOW,100);
+      motor_B_control(HIGH,100);
+      delay(560);
+
+    }
+     else if ( maze_status == 3) //가 오
+    {
+      Serial.println("Rotate CCW");
+      motor_A_control(HIGH,100);
+      motor_B_control(LOW,100);
+      delay(540);
+    }
+     else
+    {
+      Serial.println("Go straight");
+      motor_A_control(HIGH, 70);
+      motor_B_control(HIGH, 70);
+    }
+*/
   
   else
   {
