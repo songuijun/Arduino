@@ -1,6 +1,3 @@
-
-int x = -160;
-
 void setup() 
 {
   size(600, 450);
